@@ -842,3 +842,138 @@ Output:
 Current temperature: 15.45°C
 Humidity: 64%
 Weather description: clear sky
+
+
+PART-B:
+
+1. Develop a program to read the name & year of birth of a person. Display whether the person is a Senior Citizen or not.
+
+from datetime import date
+perName = input("Enter the name of the person: ")
+perDOB = int(input("Enter his/her year of birth: "))
+curyear = date.today().year
+
+perAge = curyear - perDOB
+if perAge > 60:
+    print(perName, "aged", perAge, "years is a Senior citizen")
+else:
+    print(perName, "aged", perAge, "years is not a Senior citizen")
+
+OUTPUT:
+Enter the name of the person: Sujay
+Enter his/her year of birth: 2002
+Smruthika aged 21 years is not a Senior citizen
+
+Enter the name of the person: Jayan
+Enter his/her year of birth: 1960
+Jayanthi aged 63 years is a Senior citizen
+
+2.Write a function to calculate factorial of a number. Develop a program to compute binomial coefficient(Given N & R):
+
+def fact(num):
+    if num == 0:
+        return 1
+    else:
+        return num * fact(num - 1)
+
+n = int(input("Enter the value of N: "))
+r = int(input("Enter the value of R (R cannot be negative or greater than N): "))
+nCr = fact(n) / (fact(r) * fact(n - r))
+print(n, 'C', r, "=", "%d" % nCr, sep="")
+
+OUTPUT:
+
+Enter the value of N: 5
+Enter the value of R (R cannot be negative or greater than N): 2
+5C2=10
+
+3. Read N numbers from the console & create a list. Develop a program to print mean, variance & standard deviation with suitable messages.
+
+from math import sqrt
+
+myList = []
+num = int(input("Enter the number of elements in your list: "))
+
+for i in range(num):
+    val = int(input("Enter the element: "))
+    myList.append(val)
+    print('The length of list is ', len(myList))
+
+total = 0
+for elem in myList:
+    total += elem
+
+mean = total / num
+
+total = 0
+for elem in myList:
+    total += (elem - mean) ** 2
+
+variance = total / num
+stdDev = sqrt(variance)
+
+print("List contents", myList)
+print("Mean=", mean)
+print("Variance:", variance)
+print("Standard Deviation:", "%.2f" % stdDev)
+
+OUTPUT:
+
+Enter the number of elements in your list: 5
+Enter the element: 5
+The length of list is  1
+Enter the element: 10
+The length of list is  2
+Enter the element: 15
+The length of list is  3
+Enter the element: 20
+The length of list is  4
+Enter the element: 25
+The length of list is  5
+List contents [5, 10, 15, 20, 25]
+Mean= 15.0
+Variance: 50.0
+Standard Deviation: 7.07
+
+4.Read a multi-digit number(as chars)from the console. Develop a program to print the frequency of each digit with suitable message.
+
+num = input("Enter a number: ")
+print("The number entered is ", num)
+
+uniqDig = set(num)
+for elem in uniqDig:
+    print(elem, "occurs", num.count(elem), "times")
+
+OUTPUT:
+
+Enter a number: 1221
+The number entered is  1221
+2 occurs 2 times
+1 occurs 2 times
+
+5. Write a function named DivExp which takes two parameters a,d and returns a value c(c=a/b), write suitable assertion for a>0 in function DivExp & raise an exception for when b=0. Develop a suitable program which reads two values from the console & calls a function DivExp.
+
+import sys
+
+def DivExp(a,b):
+  assert a>0,"a should be greater than 0"
+  try:
+    c=a/b
+  except ZeroDivisionError:
+    print("Value of b cannot be zero")
+    sys.exit(0)
+  else:
+    return c
+
+val1=int(input("Enter a value for a: "))
+val2=int(input("Enter a value for b: "))
+
+val3=DivExp(val1,val2)
+
+print(val1,"/",val2,"=",val3)
+
+OUTPUT:
+
+Enter a value for a: 5
+Enter a value for b: 2
+5 / 2 = 2.5
